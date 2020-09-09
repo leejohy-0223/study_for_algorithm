@@ -1,0 +1,30 @@
+n, m = map(int, input().split())
+rice = list(map(int, input().split()))
+
+start = 0
+end = max(rice)
+
+diff = [0] * n
+result = 0
+while start <= end:
+  mid = (start + end) // 2
+
+  for i in range(n):
+    if rice[i] - mid > 0:
+      diff[i] = rice[i] - mid
+    else :
+      diff[i] = 0
+    
+  for i in range(n):
+    print(diff[i])
+
+  print()
+  if sum(diff) == m:
+    result = mid
+    break
+  elif sum(diff) > m:
+    start = mid + 1
+  else :
+    end = mid - 1
+
+print(result)
