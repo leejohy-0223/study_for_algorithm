@@ -1,0 +1,30 @@
+#이진 탐색 소스 구현
+def binary_search(array, target, start, end):
+  while start <= end:
+    mid = (start + end) // 2
+    
+    # 찾은 경우 인덱스 반환
+    if array[mid] == target:
+      return mid
+    # target보다 mid가 클 경우, 큰거 다 버리기
+    elif array[mid] > target:
+      end = mid - 1
+    else:
+      start = mid + 1
+  return None
+
+#n(가게 부품 개수) 입력
+n = int(input())
+array1 = list(map(int, input().split()))
+array1.sort()
+
+#m(손님 요청 개수)
+m = int(input())
+array2 = list(map(int, input().split()))
+
+for i in range(m):
+  result = binary_search(array1, array2[i], 0, n-1)
+  if result:
+    print("yes", end=" ")
+  else:
+    print("no", end=" ")
